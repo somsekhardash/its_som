@@ -29,6 +29,14 @@ module.exports = {
                         loader: "ts-loader"
                     }
                 ]
+            },
+            {
+                test:  /\.(png|jpg|jpeg|gif|json|svg|woff|woff2|ttf|eot)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[name]-[hash:base64:5].[ext]',
+                    outputPath: 'bundled_assets/',
+                }
             }
         ]
     },

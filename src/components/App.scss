@@ -1,6 +1,26 @@
 $red: #a1b2c3;
 
-
 body {
-    background: $red;
+  background: $red;
+}
+
+.mapboxgl-marker {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid gray;
+  background-color: lightblue;
+}
+
+section {
+  min-height: 100vh;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  margin-left: 17rem;
+}
+
+.mapboxgl-control-container {
+  display: none;
 }
