@@ -13,7 +13,7 @@ import { SiteAPI } from "../schemas/siteSchema";
 import { ContactAPI } from "../schemas/ContactSchema";
 import ContactForm from "./ContactForm";
 
-const FormContainer: React.FC<any> = () => {
+const FormContainer = () => {
   const { definition, getAbout, setAbout } = AboutAPI();
   const { educationDefinition, getEducation, setEducation } = EducationAPI();
   const { experienceDefinition, getExperience, setExperience } =

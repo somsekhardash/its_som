@@ -2,6 +2,28 @@ import * as React from "react";
 import { ISchema } from "../schemas/interfaces";
 import { objMaker } from "./SiteHeader";
 
+export const getTheDate = (date: string) => {
+  if (!date) return "";
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const d = new Date(date); //converts the string into date object
+  const m = d.getMonth();
+  const y = d.getFullYear(); //get the value of month
+  return `${monthNames[m]} ${y}`;
+};
+
 function SiteExperience({ Schema }: any) {
   const { name } = Schema as ISchema;
   const experience = objMaker(Schema);
@@ -29,8 +51,8 @@ function SiteExperience({ Schema }: any) {
             </div>
             <div className="flex-shrink-0">
               <span className="text-primary">
-                {experience[node].startdate} -{" "}
-                {index == 0 ? "Present" : experience[node].enddate}
+                {getTheDate(experience[node].startdate)} -
+                {index == 0 ? "Present" : getTheDate(experience[node].enddate)}
               </span>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ISchema } from "../schemas/interfaces";
+import { getTheDate } from "./SiteExperience";
 import { objMaker } from "./SiteHeader";
 
 function SiteEducation({ Schema }: any) {
@@ -24,9 +25,12 @@ function SiteEducation({ Schema }: any) {
               {/* <p>GPA: {education[node].cgpa}</p> */}
             </div>
             <div className="flex-shrink-0">
-              <span className="text-primary">
-                {education[node].startdate} - {education[node].enddate}
-              </span>
+              {index != educations.length - 1 && (
+                <span className="text-primary">
+                  {getTheDate(education[node].startdate)} -
+                  {getTheDate(education[node].enddate)}
+                </span>
+              )}
             </div>
           </div>
         ))}
