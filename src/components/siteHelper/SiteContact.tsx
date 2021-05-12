@@ -1,14 +1,11 @@
 import * as React from "react";
 import { Form } from "semantic-ui-react";
-// import Firebase from './../auth/firebase';
 
-const SiteContact: React.FC<any> = ({ data }) => {
+function SiteContact({ setContact }: any) {
   const [fullName, setFullName] = React.useState("");
   const [fullNameError, setFullNameError] = React.useState(false);
-
   const [email, setEmail] = React.useState("");
   const [emailError, setEmailError] = React.useState(false);
-
   const [message, setMessage] = React.useState("");
   const [messageError, setMessageError] = React.useState(false);
 
@@ -23,14 +20,25 @@ const SiteContact: React.FC<any> = ({ data }) => {
   };
 
   const seteducationCall = () => {
-    validate() && alert("data saved");
+    validate() &&
+      setContact({
+        fullName: fullName,
+        email: email,
+        message: message,
+        id: (+new Date()).toString(36),
+      });
+    setTimeout(() => {
+      setFullName("");
+      setEmail("");
+      setMessage("");
+    }, 1000);
   };
 
   return (
-    <section className="contact" id="contact">
+    <section className="contact site-map" id="contact">
       <Form>
         <Form.Input
-          error={fullNameError ? "Please enter your name" : ""}
+          error={fullNameError ? "Please enter your name" : null}
           value={fullName}
           label="Full Name"
           placeholder="Full Name"
@@ -38,7 +46,7 @@ const SiteContact: React.FC<any> = ({ data }) => {
           id="form-input-full-name"
         />
         <Form.Input
-          error={emailError ? "Please enter your email address" : ""}
+          error={emailError ? "Please enter your email address" : null}
           value={email}
           type="email"
           label="Email"
@@ -46,16 +54,16 @@ const SiteContact: React.FC<any> = ({ data }) => {
           placeholder="Email"
         />
         <Form.TextArea
-          error={messageError ? "Please enter your message" : ""}
+          error={messageError ? "Please enter your message" : null}
           value={message}
           label="Message"
           onChange={(e) => setMessage(e.currentTarget.value)}
           placeholder="Message"
         />
-        <Form.Button onClick={seteducationCall}>Submit</Form.Button>
+        <Form.Button onClick={() => seteducationCall()}>Submit</Form.Button>
       </Form>
     </section>
   );
-};
+}
 
 export default SiteContact;

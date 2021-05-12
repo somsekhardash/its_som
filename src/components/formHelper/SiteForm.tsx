@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import { FormBuilder } from "src/components/formHelper/FormBuilder";
-import { siteDefinition } from "../schemas/siteSchema";
-import merge from "deepmerge";
+// import siteDefinition from "../schemas/siteSchema";
 import "./app.scss";
-import useHttp from "../share/UseHttp";
+
 import {
   Button,
   Loader,
@@ -12,46 +10,35 @@ import {
   Segment,
   Icon,
 } from "semantic-ui-react";
-var classNames = require("classnames");
+import { FormBuilder } from "./FormBuilder";
+import { useBuilder } from "../share/useBuilder";
+import { useRemaker } from "../share/useReMaker";
 
-// import Firebase from './../auth/firebase';
+const SiteForm: React.FC<any> = ({ SiteDefinition, setSite }) => {
+  const { builderSchema, onSchemaChange } = useBuilder(SiteDefinition);
+  const { revSchema } = useRemaker(builderSchema, SiteDefinition);
 
-const SiteForm: React.FC<any> = ({ data }) => {
-  const [siteComponentData, setSiteComponentData] = React.useState({});
-  const [setSiteLoader, setSiteData, setSiteError, setsite] = useHttp();
-  const getSiteData = data;
-
-  const onSchemaChange = (idx: any, name: any, data: any) => {};
-
-  const updateSchema = (data: any, definition: any) => {};
-
-  const setSiteCall = () => {};
-
-  const onSchemaClick = (name: string) => {};
-
-  var siteClass = classNames({
-    section: true,
-  });
+  const saveForm = () => {
+    localStorage.setItem("SiteForm", JSON.stringify(revSchema));
+    setSite(JSON.stringify(revSchema));
+  };
 
   return (
-    <div className={siteClass}>
-      <h1>dash</h1>
+    <div>
       <Segment placeholder>
         <Grid columns={2} relaxed="very" stackable>
-          <Divider vertical>
-            {" "}
-            <Icon disabled name="arrow circle right" />{" "}
-          </Divider>
           <Grid.Column>
-            <FormBuilder
-              schema={siteDefinition}
-              onSchemaChange={onSchemaChange}
-              onSchemaClick={onSchemaClick}
-            />
+            <FormBuilder schema={SiteDefinition} onChange={onSchemaChange} />
           </Grid.Column>
           <Grid.Column>
-            <pre>{JSON.stringify(siteDefinition, null, 4)}</pre>
+            <pre>{JSON.stringify(revSchema, null, 4)}</pre>
           </Grid.Column>
+          {/* <Grid.Column>
+            <pre>{JSON.stringify(builderSchema, null, 4)}</pre>
+          </Grid.Column> */}
+          <button className="ui secondary button" onClick={() => saveForm()}>
+            Save
+          </button>
         </Grid>
       </Segment>
     </div>

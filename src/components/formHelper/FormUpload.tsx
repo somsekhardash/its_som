@@ -5,6 +5,23 @@ const FormUpload: React.FC<any> = ({ idx, schema, onChange }) => {
   const [pictures, setPictures] = React.useState<any>([]);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
+  const onDrop = (e: any) => {
+    debugger;
+    const file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function () {
+      console.log("Encoded Base 64 File String:", reader.result);
+      onChange(idx, reader.result);
+
+      /******************* for Binary ***********************/
+      //debugger;
+      // var data = reader.result.split(",")[1];
+      // var binaryBlob = atob(data);
+      // console.log("Encoded Binary File String:", binaryBlob);
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="logo">
       <Button
@@ -18,7 +35,7 @@ const FormUpload: React.FC<any> = ({ idx, schema, onChange }) => {
         type="file"
         multiple={false}
         hidden
-        // onChange={(e) => onDrop(e.target.files[0])}
+        onChange={(e) => onDrop(e)}
         accept="image/png, image/jpeg"
       />
 

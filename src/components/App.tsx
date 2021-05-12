@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./App.scss";
 import { FormContainer } from "src/components/formHelper/FormContainer";
 import { useRoutes } from "hookrouter";
 import NotFoundPage from "src/components/NotFoundPage";

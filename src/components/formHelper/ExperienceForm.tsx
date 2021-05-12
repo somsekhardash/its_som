@@ -11,16 +11,19 @@ import {
   Input,
 } from "semantic-ui-react";
 import { FormBuilder } from "src/components/formHelper/FormBuilder";
-import { experienceDefinition } from "../schemas/experienceSchema";
 import { useBuilder } from "../share/useBuilder";
 import { useRemaker } from "../share/useReMaker";
 
-const ExperienceForm: React.FC<any> = () => {
-  const { builderSchema, onSchemaChange } = useBuilder(experienceDefinition);
-  const { revSchema } = useRemaker(builderSchema, experienceDefinition);
+const ExperienceForm: React.FC<any> = ({
+  ExperienceDefinition,
+  setExperience,
+}) => {
+  const { builderSchema, onSchemaChange } = useBuilder(ExperienceDefinition);
+  const { revSchema } = useRemaker(builderSchema, ExperienceDefinition);
 
   const saveForm = () => {
-    localStorage.setItem("HeaderForm", JSON.stringify(revSchema));
+    localStorage.setItem("ExperienceForm", JSON.stringify(revSchema));
+    setExperience(JSON.stringify(revSchema));
   };
 
   return (
@@ -29,7 +32,7 @@ const ExperienceForm: React.FC<any> = () => {
         <Grid columns={2} relaxed="very" stackable>
           <Grid.Column>
             <FormBuilder
-              schema={experienceDefinition}
+              schema={ExperienceDefinition}
               onChange={onSchemaChange}
             />
           </Grid.Column>
@@ -39,11 +42,11 @@ const ExperienceForm: React.FC<any> = () => {
           {/* <Grid.Column>
             <pre>{JSON.stringify(builderSchema, null, 4)}</pre>
           </Grid.Column> */}
+          <button className="ui secondary button" onClick={() => saveForm()}>
+            Save
+          </button>
         </Grid>
       </Segment>
-      <button className="ui secondary button" onClick={() => saveForm()}>
-        Okay
-      </button>
     </div>
   );
 };

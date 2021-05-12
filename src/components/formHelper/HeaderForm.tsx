@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FormBuilder } from "./FormBuilder";
-import HeaderDefinition from "../schemas/HeaderSchema";
+// import HeaderDefinition from "../schemas/HeaderSchema";
 import merge from "deepmerge";
 import "./app.scss";
 import useHttp from "../share/UseHttp";
@@ -13,15 +13,14 @@ import {
   Icon,
 } from "semantic-ui-react";
 import { useBuilder } from "../share/useBuilder";
-
 import { useRemaker } from "../share/useReMaker";
 
-const HeaderForm: React.FC<any> = () => {
+const HeaderForm: React.FC<any> = ({ HeaderDefinition, setAbout }) => {
   const { builderSchema, onSchemaChange } = useBuilder(HeaderDefinition);
   const { revSchema } = useRemaker(builderSchema, HeaderDefinition);
 
   const saveForm = () => {
-    localStorage.setItem("HeaderForm", JSON.stringify(revSchema));
+    setAbout(JSON.stringify(revSchema));
   };
 
   return (
@@ -37,11 +36,11 @@ const HeaderForm: React.FC<any> = () => {
           {/* <Grid.Column>
             <pre>{JSON.stringify(builderSchema, null, 4)}</pre>
           </Grid.Column> */}
+          <button className="ui secondary button" onClick={() => saveForm()}>
+            Save
+          </button>
         </Grid>
       </Segment>
-      <button className="ui secondary button" onClick={() => saveForm()}>
-        Okay
-      </button>
     </div>
   );
 };

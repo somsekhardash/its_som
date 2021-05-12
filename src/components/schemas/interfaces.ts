@@ -24,8 +24,15 @@ export interface ComponentType extends Omit<ISchema, "type"> {
   data?: any;
 }
 
+export interface ISchemaGroup {
+  [key: number]: Array<ComponentType | ISchema>;
+}
+
 export interface ISchema {
   name: string;
   type: SchemaTypes;
   items?: Array<ComponentType | ISchema>;
+  groups?: ISchemaGroup;
+  add?: any;
+  remove?: any;
 }

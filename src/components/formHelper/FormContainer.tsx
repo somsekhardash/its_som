@@ -5,47 +5,73 @@ import EducationForm from "./EducationForm";
 import SkillForm from "./SkillForm";
 import SiteForm from "./SiteForm";
 import UseFirebase from "./../share/UseFirebase";
+import { SkillsAPI } from "../schemas/skillsSchema";
+import { AboutAPI } from "../schemas/HeaderSchema";
+import { EducationAPI } from "../schemas/EducationSchema";
+import { ExperienceAPI } from "../schemas/ExperienceSchema";
+import { SiteAPI } from "../schemas/siteSchema";
+import { ContactAPI } from "../schemas/ContactSchema";
+import ContactForm from "./ContactForm";
 
 const FormContainer: React.FC<any> = () => {
-  // const [aboutIsLoading, aboutData, aboutError] = UseFirebase("about");
-  // const [experienceIsLoading, experienceData, experienceError] = UseFirebase(
-  //   "experience"
-  // );
-  // const [educationIsLoading, educationData, educationError] = UseFirebase(
-  //   "education"
-  // );
-  // const [skillIsLoading, skillData, skillError] = UseFirebase("skill");
-  // const [SiteIsLoading, siteData, siteError] = UseFirebase("site");
+  const { definition, getAbout, setAbout } = AboutAPI();
+  const { educationDefinition, getEducation, setEducation } = EducationAPI();
+  const { experienceDefinition, getExperience, setExperience } =
+    ExperienceAPI();
+  const { SkillsDefinition, getSkills, setSkills } = SkillsAPI();
+  const { SiteDefinition, getSite, setSite } = SiteAPI();
+  const { contactDefinition, getContact, setContact } = ContactAPI();
 
-  // React.useEffect(() => {
-  //   console.log(aboutData);
-  //   console.log(experienceData);
-  //   console.log(educationData);
-  //   console.log(skillData);
-  //   console.log(siteData);
-  // }, []);
+  React.useEffect(() => {
+    getAbout();
+    getEducation();
+    getExperience();
+    getSkills();
+    getSite();
+    getContact();
+  }, []);
 
   return (
     <div className="input">
-      {/* {!aboutIsLoading ? (
-        <HeaderForm data={aboutData} />
+      {definition && definition.name ? (
+        <HeaderForm HeaderDefinition={definition} setAbout={setAbout} />
       ) : (
         <h1>Loading.....</h1>
       )}
-      {!experienceIsLoading ? (
-        <ExperienceForm data={experienceData} />
+      {experienceDefinition && experienceDefinition.name ? (
+        <ExperienceForm
+          ExperienceDefinition={experienceDefinition}
+          setExperience={setExperience}
+        />
       ) : (
         <h1>Loading.....</h1>
       )}
-      {!educationIsLoading ? (
-        <EducationForm data={educationData} />
+      {educationDefinition && educationDefinition.name ? (
+        <EducationForm
+          EducationDefinition={educationDefinition}
+          setEducation={setEducation}
+        />
       ) : (
         <h1>Loading.....</h1>
       )}
-      {!skillIsLoading ? <SkillForm data={skillData} /> : <h1>Loading.....</h1>}
-      {<SiteForm data={siteData} />} */}
-      <HeaderForm />
-      <ExperienceForm />
+      {SkillsDefinition && SkillsDefinition.name ? (
+        <SkillForm SkillsDefinition={SkillsDefinition} setSkills={setSkills} />
+      ) : (
+        <h1>Loading.....</h1>
+      )}
+      {SiteDefinition && SiteDefinition.name ? (
+        <SiteForm SiteDefinition={SiteDefinition} setSite={setSite} />
+      ) : (
+        <h1>Loading.....</h1>
+      )}
+      {contactDefinition ? (
+        <ContactForm
+          contactDefinition={contactDefinition}
+          setContact={setContact}
+        />
+      ) : (
+        <h1>Loading.....</h1>
+      )}
     </div>
   );
 };

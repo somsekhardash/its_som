@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import {
   ISchema,
   ComponentTypes,
   SchemaTypes,
 } from "src/components/schemas/interfaces";
+import useHttp from "../share/UseHttp";
+import { ABOUT_URL, SECRET_KEY } from "src/config";
 
 const HeaderDefinition: ISchema = {
   name: "about",
@@ -89,7 +92,38 @@ const HeaderDefinition: ISchema = {
   ],
 };
 
-const localData =
-  JSON.parse(localStorage.getItem("HeaderForm")) || HeaderDefinition;
+export function AboutAPI() {
+  const [AboutLoader, AboutData, AboutError, GetAbout] = useHttp();
+  const [SetAboutLoader, SetAboutData, SetAboutError, SetAbout] = useHttp();
 
-export default localData;
+  const [definition, setDefinition] = useState(
+    () =>
+      JSON.parse(localStorage.getItem("AboutForm")) || { ...HeaderDefinition }
+  );
+
+  const getAbout = () => {
+    GetAbout(`${ABOUT_URL}/latest`, {
+      method: "GET",
+      headers: {
+        "secret-key": SECRET_KEY,
+      },
+    });
+  };
+
+  const setAbout = (data: string) => {
+    SetAbout(ABOUT_URL, {
+      method: "PUT",
+      headers: {
+        "secret-key": SECRET_KEY,
+        "Content-Type": "application/json",
+      },
+      body: data,
+    });
+  };
+
+  useEffect(() => {
+    !AboutError && setDefinition(AboutData);
+  }, [AboutError, AboutData]);
+
+  return { definition, getAbout, setAbout };
+}

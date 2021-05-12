@@ -10,87 +10,35 @@ import {
   Modal,
   Input,
 } from "semantic-ui-react";
-import { FormBuilder } from "src/components/formHelper/FormBuilder";
-import { skillDefinition } from "../schemas/skillsSchema";
-var classNames = require("classnames");
-var _ = require("lodash");
-// import Firebase from './../auth/firebase';
+import { FormBuilder } from "./FormBuilder";
+import { useBuilder } from "../share/useBuilder";
+import { useRemaker } from "../share/useReMaker";
 
-const SkillForm: React.FC<any> = ({ data }) => {
-  const [skillsComponentData, setSkillsComponentData] = useState({});
-  const getSkillsData = data;
+const SkillForm: React.FC<any> = ({ SkillsDefinition, setSkills }) => {
+  const { builderSchema, onSchemaChange } = useBuilder(SkillsDefinition);
+  const { revSchema } = useRemaker(builderSchema, SkillsDefinition);
 
-  const onSchemaChange = (idx: any, name: any, data: any, isArray: boolean) => {
-    const idxArray = `${idx}-${name}`.split("-");
-    const result = idxArray
-      .reverse()
-      .reduce((res, key) => ({ [key]: res }), data)[
-      idxArray[idxArray.length - 1]
-    ];
-    const som = _.merge(skillsComponentData, result || {});
-    setSkillsComponentData({ ...som });
+  const saveForm = () => {
+    localStorage.setItem("SkillForm", JSON.stringify(revSchema));
+    setSkills(JSON.stringify(revSchema));
   };
-
-  const updateSchema = (data: any, definition: any) => {
-    definition.items.forEach((element: any) => {
-      if (element.type == "object") {
-        updateSchema(data[element.name], element);
-      } else if (element.type == "array") {
-        element.value = data[element.name] ? [...data[element.name]] : [];
-      } else {
-        element.value = data[element.name] ? data[element.name] : "";
-      }
-    });
-    return definition;
-  };
-
-  const onSchemaClick = (name: string, data: any) => {
-    switch (name) {
-      case "formClear":
-        break;
-      case "saveForm":
-        setExperienceCall();
-        break;
-      default:
-        break;
-    }
-  };
-
-  const setExperienceCall = () => {
-    // Firebase.db.ref(`skill`).set(skillsComponentData);
-    alert("data saved");
-  };
-
-  var parentClass = classNames({
-    section: true,
-  });
 
   return (
-    <div className={parentClass}>
+    <div>
       <Segment placeholder>
         <Grid columns={2} relaxed="very" stackable>
-          <Divider vertical>
-            {" "}
-            <Icon disabled name="arrow circle right" />{" "}
-          </Divider>
           <Grid.Column>
-            {getSkillsData && (
-              <FormBuilder
-                schema={updateSchema(getSkillsData, skillDefinition)}
-                onSchemaChange={onSchemaChange}
-                onSchemaClick={onSchemaClick}
-              />
-            )}
+            <FormBuilder schema={SkillsDefinition} onChange={onSchemaChange} />
           </Grid.Column>
           <Grid.Column>
-            <pre>
-              {JSON.stringify(
-                _.merge(getSkillsData, skillsComponentData),
-                null,
-                4
-              )}
-            </pre>
+            <pre>{JSON.stringify(revSchema, null, 4)}</pre>
           </Grid.Column>
+          {/* <Grid.Column>
+            <pre>{JSON.stringify(builderSchema, null, 4)}</pre>
+          </Grid.Column> */}
+          <button className="ui secondary button" onClick={() => saveForm()}>
+            Save
+          </button>
         </Grid>
       </Segment>
     </div>
