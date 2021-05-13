@@ -1,0 +1,162 @@
+.form-builder-container {
+  width: 100%;
+  padding: 2%;
+  border: 2px solid black;
+  margin: 0 auto;
+  & > * {
+    margin: 12px 0;
+    text-align: left;
+  }
+  textarea {
+    max-width: 100% !important;
+    margin-left: unset !important;
+    margin-right: unset !important;
+  }
+  .form-builder-container {
+    border: 1px solid silver;
+    border-radius: 3px;
+  }
+
+  .button {
+    margin: 0 !important;
+    display: inline !important;
+    margin-right: 2% !important;
+  }
+}
+
+#notfound {
+  position: relative;
+  height: 100vh;
+
+  .notfound {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .notfound {
+    max-width: 520px;
+    width: 100%;
+    line-height: 1.4;
+    text-align: center;
+    .notfound-404 {
+      position: relative;
+      height: 200px;
+      margin: 0px auto 20px;
+      z-index: -1;
+    }
+
+    .notfound-404 h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 236px;
+      font-weight: 200;
+      margin: 0px;
+      color: #211b19;
+      text-transform: uppercase;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .notfound-404 h2 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: #211b19;
+      background: #fff;
+      padding: 10px 5px;
+      margin: auto;
+      display: inline-block;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      right: 0;
+    }
+
+    a {
+      font-family: "Montserrat", sans-serif;
+      display: inline-block;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+      text-transform: uppercase;
+      padding: 13px 23px;
+      background: #ff6300;
+      font-size: 18px;
+      -webkit-transition: 0.2s all;
+      transition: 0.2s all;
+    }
+
+    a:hover {
+      color: #ff6300;
+      background: #211b19;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .notfound .notfound-404 h1 {
+      font-size: 148px;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .notfound .notfound-404 {
+      height: 148px;
+      margin: 0px auto 10px;
+    }
+    .notfound .notfound-404 h1 {
+      font-size: 86px;
+    }
+    .notfound .notfound-404 h2 {
+      font-size: 16px;
+    }
+    .notfound a {
+      padding: 7px 15px;
+      font-size: 14px;
+    }
+  }
+}
+
+a {
+  cursor: pointer;
+}
+
+.mapboxgl-marker {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 6px solid;
+  border-color: var(--primary);
+}
+
+section.contact {
+  min-height: 100vh;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.mapboxgl-control-container {
+  display: none;
+}
+
+.site-map {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  height: 100vh;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  .mapboxgl-map,
+  form {
+    width: 100% !important;
+  }
+}
