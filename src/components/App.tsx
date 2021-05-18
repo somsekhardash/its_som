@@ -5,14 +5,34 @@ import NotFoundPage from "src/components/NotFoundPage";
 import HomePage from "src/components/HomePage";
 import Login from "./siteHelper/SiteLogin";
 
-const routes = {
-  "/": () => <HomePage />,
-  "/admin": () => <Login />,
-};
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from "react-router-dom";
+
+// const routes = {
+//   "/": () => <HomePage />,
+//   "/admin": () => <Login />,
+// };
 
 const App = () => {
-  const routeResult = useRoutes(routes);
-  return routeResult || <NotFoundPage />;
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route exact path="/admin">
+          <Login />
+        </Route>
+        <Route path="/*">
+          <NotFoundPage />
+        </Route>
+      </Switch>
+    </Router>
+  );
 };
 
 export default App;
