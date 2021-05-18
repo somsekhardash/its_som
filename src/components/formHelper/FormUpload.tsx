@@ -6,18 +6,10 @@ const FormUpload: React.FC<any> = ({ idx, schema, onChange }) => {
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const onDrop = (e: any) => {
-    debugger;
     const file = e.target.files[0];
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.onloadend = function () {
-      console.log("Encoded Base 64 File String:", reader.result);
       onChange(idx, reader.result);
-
-      /******************* for Binary ***********************/
-      //debugger;
-      // var data = reader.result.split(",")[1];
-      // var binaryBlob = atob(data);
-      // console.log("Encoded Binary File String:", binaryBlob);
     };
     reader.readAsDataURL(file);
   };

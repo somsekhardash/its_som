@@ -12,6 +12,7 @@ import { ExperienceAPI } from "../schemas/ExperienceSchema";
 import { SiteAPI } from "../schemas/siteSchema";
 import { ContactAPI } from "../schemas/ContactSchema";
 import ContactForm from "./ContactForm";
+import { useEffect } from "react";
 
 const FormContainer = () => {
   const { definition, getAbout, setAbout } = AboutAPI();
@@ -22,7 +23,7 @@ const FormContainer = () => {
   const { SiteDefinition, getSite, setSite } = SiteAPI();
   const { contactDefinition, getContact, setContact } = ContactAPI();
 
-  React.useEffect(() => {
+  useEffect(() => {
     getAbout();
     getEducation();
     getExperience();

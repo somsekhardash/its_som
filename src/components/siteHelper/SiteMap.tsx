@@ -25,10 +25,10 @@ export default function SiteMap({ Schema }: any) {
     minZoom: minzoom,
     accessToken: accessToken,
   });
-  console.log(coordinate_x, coordinate_y);
+
   return (
     <section className="site-map" id="map">
-      {!isNaN(coordinate_x) && (
+      {!isNaN(coordinate_x) && Map && (
         <Map
           style="mapbox://styles/mapbox/streets-v9"
           center={[coordinate_x, coordinate_y]}

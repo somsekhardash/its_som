@@ -28,7 +28,6 @@ function SiteExperience({ Schema }: any) {
   const { name } = Schema as ISchema;
   const experience = objMaker(Schema);
   const experiences = Object.keys(experience);
-  console.log(experience);
   return (
     <section className="resume-section" id="experience">
       <div className="resume-section-content">
@@ -44,9 +43,11 @@ function SiteExperience({ Schema }: any) {
                 {experience[node].companyname}
               </div>
               <div className="desc">
-                {experience[node].description.split("*").map((node: any) => {
-                  return <p>{node}</p>;
-                })}
+                {experience[node].description
+                  .split("*")
+                  .map((node: any, index: number) => {
+                    return <p key={index}>{node}</p>;
+                  })}
               </div>
             </div>
             <div className="flex-shrink-0">
