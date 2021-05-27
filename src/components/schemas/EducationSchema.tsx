@@ -6,6 +6,7 @@ import {
 } from "src/components/schemas/interfaces";
 import useHttp from "../share/UseHttp";
 import { EDUCATION_URL, SECRET_KEY } from "src/config";
+import dataInject from 'src/components/schemas/temp';
 
 const EducationDefinition: ISchema = {
   name: "education",
@@ -62,12 +63,7 @@ export function EducationAPI() {
     SetEducation,
   ] = useHttp();
 
-  const [educationDefinition, setDefinition] = useState(
-    () =>
-      JSON.parse(localStorage.getItem("EducationForm")) || {
-        ...EducationDefinition,
-      }
-  );
+  const [educationDefinition, setDefinition] = useState(null);
 
   const getEducation = () => {
     GetEducation(`${EDUCATION_URL}/latest`, {
@@ -85,12 +81,12 @@ export function EducationAPI() {
         "secret-key": SECRET_KEY,
         "Content-Type": "application/json",
       },
-      body: data,
+      body: JSON.stringify(dataInject.schemaToObject(JSON.parse(data))),
     });
   };
 
   useEffect(() => {
-    !EducationError && setDefinition(EducationData);
+    !EducationError && EducationData && setDefinition(dataInject.objectToSchema(EducationData,EducationDefinition));
   }, [EducationError, EducationData]);
 
   return { educationDefinition, getEducation, setEducation };

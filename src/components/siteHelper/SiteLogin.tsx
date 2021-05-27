@@ -3,7 +3,7 @@ import { Button, Checkbox, Form } from "semantic-ui-react";
 import { FormContainer } from "../formHelper/FormContainer";
 
 export default function Login() {
-  const [state, setstate] = useState(false);
+  const [state, setstate] = useState(true);
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
 

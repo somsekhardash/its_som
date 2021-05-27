@@ -6,6 +6,7 @@ import {
 } from "src/components/schemas/interfaces";
 import useHttp from "../share/UseHttp";
 import { ABOUT_URL, SECRET_KEY } from "src/config";
+import dataInject from 'src/components/schemas/temp';
 
 const HeaderDefinition: ISchema = {
   name: "about",
@@ -87,6 +88,12 @@ const HeaderDefinition: ISchema = {
           value: "",
           name: "facebook",
         },
+        {
+          type: ComponentTypes.TEXT,
+          description: "resume",
+          value: "",
+          name: "resume",
+        },
       ],
     },
   ],
@@ -96,10 +103,7 @@ export function AboutAPI() {
   const [AboutLoader, AboutData, AboutError, GetAbout] = useHttp();
   const [SetAboutLoader, SetAboutData, SetAboutError, SetAbout] = useHttp();
 
-  const [definition, setDefinition] = useState(
-    () =>
-      JSON.parse(localStorage.getItem("AboutForm")) || { ...HeaderDefinition }
-  );
+  const [definition, setDefinition] = useState(null);
 
   const getAbout = () => {
     GetAbout(`${ABOUT_URL}/latest`, {
@@ -117,12 +121,14 @@ export function AboutAPI() {
         "secret-key": SECRET_KEY,
         "Content-Type": "application/json",
       },
-      body: data,
+      body: JSON.stringify(dataInject.schemaToObject(JSON.parse(data))),
     });
   };
 
   useEffect(() => {
-    !AboutError && setDefinition(AboutData);
+    if(!AboutError && AboutData) {
+      setDefinition(dataInject.objectToSchema(AboutData,HeaderDefinition));
+    } 
   }, [AboutError, AboutData]);
 
   return { definition, getAbout, setAbout };

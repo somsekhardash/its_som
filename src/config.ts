@@ -1,23 +1,23 @@
 export const ABOUT_URL =
-  process.env.ABOUT_URL || "https://api.jsonbin.io/b/6097f5167a19ef1245a634b4";
+  process.env.ABOUT_URL || "https://api.jsonbin.io/b/60af4e4ed0f4985540525f3e";
 
 export const EDUCATION_URL =
   process.env.EDUCATION_URL ||
-  "https://api.jsonbin.io/b/609a01b0e0aabd6e191ada01";
+  "https://api.jsonbin.io/b/60af4ee1a5cd4a5576a85db8";
 
 export const EXPERIENCE_URL =
   process.env.EXPERIENCE_URL ||
-  "https://api.jsonbin.io/b/609a2755e0aabd6e191af3ef";
+  "https://api.jsonbin.io/b/60af4f00d0f4985540525fd3";
 
 export const SKILLS_URL =
-  process.env.SKILLS_URL || "https://api.jsonbin.io/b/609a3056e0aabd6e191afe22";
+  process.env.SKILLS_URL || "https://api.jsonbin.io/b/60af4f23d0f4985540525fea";
 
 export const SITE_URL =
-  process.env.SITE_URL || "https://api.jsonbin.io/b/609a44c36e36c66e53603c04";
+  process.env.SITE_URL || "https://api.jsonbin.io/b/60af4f41a5cd4a5576a85dfd";
 
 export const CONTACT_URL =
   process.env.CONTACT_URL ||
-  "https://api.jsonbin.io/b/609a92a31a02f86e1f094df0";
+  "https://api.jsonbin.io/b/60af4f65a5cd4a5576a85e10";
 
 export const SECRET_KEY =
   process.env.SECRET_KEY ||

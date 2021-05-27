@@ -6,6 +6,7 @@ import {
 } from "src/components/schemas/interfaces";
 import { EXPERIENCE_URL, SECRET_KEY } from "src/config";
 import useHttp from "../share/UseHttp";
+import dataInject from 'src/components/schemas/temp';
 
 const ExperienceSchema: ISchema = {
   name: "experience",
@@ -42,6 +43,12 @@ const ExperienceSchema: ISchema = {
         value: "",
         name: "endDate",
       },
+      {
+        type: ComponentTypes.UPLOAD,
+        description: "background",
+        value: "",
+        name: "background",
+      },
     ],
   },
 };
@@ -56,12 +63,7 @@ export function ExperienceAPI() {
     SetExperience,
   ] = useHttp();
 
-  const [experienceDefinition, setDefinition] = useState(
-    () =>
-      JSON.parse(localStorage.getItem("ExperienceForm")) || {
-        ...ExperienceSchema,
-      }
-  );
+  const [experienceDefinition, setDefinition] = useState(null);
 
   const getExperience = () => {
     GetExperience(`${EXPERIENCE_URL}/latest`, {
@@ -79,12 +81,12 @@ export function ExperienceAPI() {
         "secret-key": SECRET_KEY,
         "Content-Type": "application/json",
       },
-      body: data,
+      body: JSON.stringify(dataInject.schemaToObject(JSON.parse(data))),
     });
   };
 
   useEffect(() => {
-    !ExperienceError && setDefinition(ExperienceData);
+    !ExperienceError && ExperienceData && setDefinition(dataInject.objectToSchema(ExperienceData,ExperienceSchema));
   }, [ExperienceError, ExperienceData]);
 
   return { experienceDefinition, getExperience, setExperience };

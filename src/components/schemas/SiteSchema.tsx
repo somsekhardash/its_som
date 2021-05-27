@@ -6,6 +6,7 @@ import {
 } from "src/components/schemas/interfaces";
 import useHttp from "../share/UseHttp";
 import { SITE_URL, SECRET_KEY } from "src/config";
+import dataInject from 'src/components/schemas/temp';
 
 const SiteSchema: ISchema = {
   name: "site",
@@ -54,12 +55,7 @@ export function SiteAPI() {
   const [SiteLoader, SiteData, SiteError, GetSite] = useHttp();
   const [SetSiteLoader, SetSiteData, SetSiteError, SetSite] = useHttp();
 
-  const [SiteDefinition, setDefinition] = useState(
-    () =>
-      JSON.parse(localStorage.getItem("SiteForm")) || {
-        ...SiteSchema,
-      }
-  );
+  const [SiteDefinition, setDefinition] = useState(null);
 
   const getSite = () => {
     GetSite(`${SITE_URL}/latest`, {
@@ -77,12 +73,18 @@ export function SiteAPI() {
         "secret-key": SECRET_KEY,
         "Content-Type": "application/json",
       },
-      body: data,
+      body: JSON.stringify(dataInject.schemaToObject(JSON.parse(data))),
     });
   };
 
   useEffect(() => {
     !SiteError && setDefinition(SiteData);
+  }, [SiteError, SiteData]);
+
+  useEffect(() => {
+    if(!SiteError && SiteData) {
+      setDefinition(dataInject.objectToSchema(SiteData,SiteSchema));
+    } 
   }, [SiteError, SiteData]);
 
   return { SiteDefinition, getSite, setSite };
