@@ -6,7 +6,7 @@ import {
 } from "src/components/schemas/interfaces";
 import useHttp from "../share/UseHttp";
 import { SITE_URL, SECRET_KEY } from "src/config";
-import dataInject from 'src/components/schemas/temp';
+import dataInject from "src/components/share/dataInjector";
 
 const SiteSchema: ISchema = {
   name: "site",
@@ -82,9 +82,9 @@ export function SiteAPI() {
   }, [SiteError, SiteData]);
 
   useEffect(() => {
-    if(!SiteError && SiteData) {
-      setDefinition(dataInject.objectToSchema(SiteData,SiteSchema));
-    } 
+    if (!SiteError && SiteData) {
+      setDefinition(dataInject.objectToSchema(SiteData, SiteSchema));
+    }
   }, [SiteError, SiteData]);
 
   return { SiteDefinition, getSite, setSite };

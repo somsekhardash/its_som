@@ -6,7 +6,7 @@ import {
 } from "src/components/schemas/interfaces";
 import useHttp from "../share/UseHttp";
 import { EDUCATION_URL, SECRET_KEY } from "src/config";
-import dataInject from 'src/components/schemas/temp';
+import dataInject from "src/components/share/dataInjector";
 
 const EducationDefinition: ISchema = {
   name: "education",
@@ -86,7 +86,11 @@ export function EducationAPI() {
   };
 
   useEffect(() => {
-    !EducationError && EducationData && setDefinition(dataInject.objectToSchema(EducationData,EducationDefinition));
+    !EducationError &&
+      EducationData &&
+      setDefinition(
+        dataInject.objectToSchema(EducationData, EducationDefinition)
+      );
   }, [EducationError, EducationData]);
 
   return { educationDefinition, getEducation, setEducation };

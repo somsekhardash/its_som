@@ -6,7 +6,7 @@ import {
 } from "src/components/schemas/interfaces";
 import useHttp from "../share/UseHttp";
 import { ABOUT_URL, SECRET_KEY } from "src/config";
-import dataInject from 'src/components/schemas/temp';
+import dataInject from "src/components/share/dataInjector";
 
 const HeaderDefinition: ISchema = {
   name: "about",
@@ -126,9 +126,9 @@ export function AboutAPI() {
   };
 
   useEffect(() => {
-    if(!AboutError && AboutData) {
-      setDefinition(dataInject.objectToSchema(AboutData,HeaderDefinition));
-    } 
+    if (!AboutError && AboutData) {
+      setDefinition(dataInject.objectToSchema(AboutData, HeaderDefinition));
+    }
   }, [AboutError, AboutData]);
 
   return { definition, getAbout, setAbout };

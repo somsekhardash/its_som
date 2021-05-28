@@ -4,7 +4,6 @@ import ExperienceForm from "./ExperienceForm";
 import EducationForm from "./EducationForm";
 import SkillForm from "./SkillForm";
 import SiteForm from "./SiteForm";
-import UseFirebase from "./../share/UseFirebase";
 import { SkillsAPI } from "../schemas/skillsSchema";
 import { AboutAPI } from "../schemas/HeaderSchema";
 import { EducationAPI } from "../schemas/EducationSchema";

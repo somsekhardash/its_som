@@ -10,8 +10,6 @@ import {
   Modal,
   Input,
 } from "semantic-ui-react";
-import merge from "deepmerge";
-import useHttp from "../share/UseHttp";
 import { FormBuilder } from "src/components/formHelper/FormBuilder";
 var classNames = require("classnames");
 var _ = require("lodash");

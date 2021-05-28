@@ -12,11 +12,6 @@ import {
   useParams,
 } from "react-router-dom";
 
-// const routes = {
-//   "/": () => <HomePage />,
-//   "/admin": () => <Login />,
-// };
-
 const App = () => {
   return (
     <Router>

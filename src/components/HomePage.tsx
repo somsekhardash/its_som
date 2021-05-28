@@ -23,6 +23,8 @@ function HomePage() {
   const { getContact, setContact } = ContactAPI();
   const { SiteDefinition, getSite } = SiteAPI();
 
+  document.querySelector("body").classList.add("margin-left-parent");
+
   useEffect(() => {
     getAbout();
     getExperience();
@@ -30,6 +32,9 @@ function HomePage() {
     getSkills();
     getContact();
     getSite();
+    return () => {
+      document.querySelector("body").classList.remove("margin-left-parent");
+    };
   }, []);
 
   return (

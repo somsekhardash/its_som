@@ -6,7 +6,7 @@ import {
 } from "src/components/schemas/interfaces";
 import { EXPERIENCE_URL, SECRET_KEY } from "src/config";
 import useHttp from "../share/UseHttp";
-import dataInject from 'src/components/schemas/temp';
+import dataInject from "src/components/share/dataInjector";
 
 const ExperienceSchema: ISchema = {
   name: "experience",
@@ -86,7 +86,11 @@ export function ExperienceAPI() {
   };
 
   useEffect(() => {
-    !ExperienceError && ExperienceData && setDefinition(dataInject.objectToSchema(ExperienceData,ExperienceSchema));
+    !ExperienceError &&
+      ExperienceData &&
+      setDefinition(
+        dataInject.objectToSchema(ExperienceData, ExperienceSchema)
+      );
   }, [ExperienceError, ExperienceData]);
 
   return { experienceDefinition, getExperience, setExperience };
