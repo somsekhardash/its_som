@@ -29,17 +29,17 @@ Schema should follow `ISchema`and examples available in schemas folder.
 
 ### Milestone 1 (Scaffolding)
 
-- [x] [Scaffold React with Webpack] (webpack.common.js/webpack.dev.js/webpack.prod.js)
-- [x] [Enable TypeScript] (tsconfig.json)
+- [x] Scaffold React with Webpack (webpack.common.js/webpack.dev.js/webpack.prod.js)
+- [x] Enable TypeScript (tsconfig.json)
 - [x] Add SCSS support
 - [x] Add Basic Route for admin page and webside page
 
 ### Milestone 2 (Schema)
 
-- [x] [Create interface for schemas] (src\components\schemas\interfaces.ts)
-- [x] [Create schema for different sections] (src\components\schemas\HeaderSchema.tsx)
-- [x] [Create HTTP Hook to make ajax call] (src\components\share\UseHttp.tsx)
-- [x] [Make call to send and receive section data] (src\components\schemas\HeaderSchema.tsx)
+- [x] Create interface for schemas (src\components\schemas\interfaces.ts)
+- [x] Create schema for different sections (src\components\schemas\HeaderSchema.tsx)
+- [x] Create HTTP Hook to make ajax call (src\components\share\UseHttp.tsx)
+- [x] Make call to send and receive section data (src\components\schemas\HeaderSchema.tsx)
 
 ### Milestone 3 (Admin page)
 
@@ -78,3 +78,7 @@ Schema should follow `ISchema`and examples available in schemas folder.
 
 - [x] Add `dotenv-webpack` support to provide `.env` support/ remove data from config file
 - [x] Add Tooltip function on Icons
+
+### Next
+
+- [ ] Remove the FormBuilder and Use it as a library
