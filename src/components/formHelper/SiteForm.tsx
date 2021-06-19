@@ -14,7 +14,7 @@ import { FormBuilder } from "./FormBuilder";
 import { useBuilder } from "../share/useBuilder";
 import { useRemaker } from "../share/useReMaker";
 
-const SiteForm: React.FC<any> = ({ SiteDefinition, setSite }) => {
+const SiteForm = ({ SiteDefinition, setSite }: any) => {
   const { builderSchema, onSchemaChange } = useBuilder(SiteDefinition);
   const { revSchema } = useRemaker(builderSchema, SiteDefinition);
 
@@ -24,7 +24,7 @@ const SiteForm: React.FC<any> = ({ SiteDefinition, setSite }) => {
   };
 
   return (
-    <div>
+    <div id="map">
       <Segment placeholder>
         <Grid columns={2} relaxed="very" stackable>
           <Grid.Column>

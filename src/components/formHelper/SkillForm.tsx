@@ -14,7 +14,7 @@ import { FormBuilder } from "./FormBuilder";
 import { useBuilder } from "../share/useBuilder";
 import { useRemaker } from "../share/useReMaker";
 
-const SkillForm: React.FC<any> = ({ SkillsDefinition, setSkills }) => {
+const SkillForm = ({ SkillsDefinition, setSkills }: any) => {
   const { builderSchema, onSchemaChange } = useBuilder(SkillsDefinition);
   const { revSchema } = useRemaker(builderSchema, SkillsDefinition);
 
@@ -24,7 +24,7 @@ const SkillForm: React.FC<any> = ({ SkillsDefinition, setSkills }) => {
   };
 
   return (
-    <div>
+    <div id="skills">
       <Segment placeholder>
         <Grid columns={2} relaxed="very" stackable>
           <Grid.Column>

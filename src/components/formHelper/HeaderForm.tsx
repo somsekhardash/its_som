@@ -14,7 +14,7 @@ import {
 import { useBuilder } from "../share/useBuilder";
 import { useRemaker } from "../share/useReMaker";
 
-const HeaderForm: React.FC<any> = ({ HeaderDefinition, setAbout }) => {
+const HeaderForm = ({ HeaderDefinition, setAbout }: any) => {
   const { builderSchema, onSchemaChange } = useBuilder(HeaderDefinition);
   const { revSchema } = useRemaker(builderSchema, HeaderDefinition);
 
@@ -23,7 +23,7 @@ const HeaderForm: React.FC<any> = ({ HeaderDefinition, setAbout }) => {
   };
 
   return (
-    <div className="dash">
+    <div className="dash" id="about">
       <Segment placeholder>
         <Grid columns={2} relaxed="very" stackable>
           <Grid.Column>

@@ -14,10 +14,7 @@ import { FormBuilder } from "components/formHelper/FormBuilder";
 import { useBuilder } from "../share/useBuilder";
 import { useRemaker } from "../share/useReMaker";
 
-const EducationForm: React.FC<any> = ({
-  EducationDefinition,
-  setEducation,
-}) => {
+const EducationForm = ({ EducationDefinition, setEducation }: any) => {
   const { builderSchema, onSchemaChange } = useBuilder(EducationDefinition);
   const { revSchema } = useRemaker(builderSchema, EducationDefinition);
 
@@ -27,7 +24,7 @@ const EducationForm: React.FC<any> = ({
   };
 
   return (
-    <div className="dash">
+    <div className="dash" id="education">
       <Segment placeholder>
         <Grid columns={2} relaxed="very" stackable>
           <Grid.Column>

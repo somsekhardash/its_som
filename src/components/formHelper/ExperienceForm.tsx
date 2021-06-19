@@ -14,10 +14,7 @@ import { FormBuilder } from "components/formHelper/FormBuilder";
 import { useBuilder } from "../share/useBuilder";
 import { useRemaker } from "../share/useReMaker";
 
-const ExperienceForm: React.FC<any> = ({
-  ExperienceDefinition,
-  setExperience,
-}) => {
+const ExperienceForm = ({ ExperienceDefinition, setExperience }: any) => {
   const { builderSchema, onSchemaChange } = useBuilder(ExperienceDefinition);
   const { revSchema } = useRemaker(builderSchema, ExperienceDefinition);
 
@@ -27,7 +24,7 @@ const ExperienceForm: React.FC<any> = ({
   };
 
   return (
-    <div className="dash">
+    <div className="dash" id="experience">
       <Segment placeholder>
         <Grid columns={2} relaxed="very" stackable>
           <Grid.Column>

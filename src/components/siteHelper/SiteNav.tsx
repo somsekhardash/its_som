@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
 import { objMaker } from "./SiteHeader";
 
-const SiteNav: React.FC<any> = ({ Schema }) => {
+const SiteNav = ({ Schema }: any) => {
   const [showMenu, setShowMenu] = React.useState(false);
 
   const data = objMaker(Schema);

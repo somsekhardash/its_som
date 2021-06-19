@@ -18,7 +18,7 @@ export default function ContactForm({ contactDefinition, setContact }: any) {
   };
 
   return (
-    <div className="dash">
+    <div className="dash" id="contact">
       <Segment placeholder>
         <h3>Messages</h3>
         <Card.Group>
