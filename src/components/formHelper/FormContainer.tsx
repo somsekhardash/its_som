@@ -26,7 +26,7 @@ const FormContainer = () => {
     getAbout();
     getEducation();
     getExperience();
-    getSkills();
+    // getSkills();
     getSite();
     getContact();
   }, []);

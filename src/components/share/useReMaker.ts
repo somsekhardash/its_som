@@ -6,7 +6,7 @@ export function useRemaker(builderSchema: any, schema?: ISchema) {
   const makeSchema = (schema: ISchema, parentName?: any) => {
     if (!schema) return null;
     const prefix = !!parentName ? `${parentName}_${schema.name}` : schema.name;
-    schema.items.forEach((node: any) => {
+    schema?.items?.forEach((node: any) => {
       if (node.type != SchemaTypes.OBJECT) {
         node.value = builderSchema[`${prefix}_${getUniformName(node.name)}`];
       } else {

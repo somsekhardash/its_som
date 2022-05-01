@@ -29,7 +29,7 @@ function HomePage() {
     getAbout();
     getExperience();
     getEducation();
-    getSkills();
+    // getSkills();
     getContact();
     getSite();
     return () => {
@@ -52,12 +52,12 @@ function HomePage() {
         ) : (
           <h1>Loading .....</h1>
         )}
-        <hr className="m-0"></hr>
+        {/* <hr className="m-0"></hr>
         {SkillsDefinition ? (
           <SiteSkills Schema={SkillsDefinition} />
         ) : (
           <h1>Loading .....</h1>
-        )}
+        )} */}
         <hr className="m-0"></hr>
         {educationDefinition ? (
           <SiteEducation Schema={educationDefinition} />

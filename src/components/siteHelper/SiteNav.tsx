@@ -81,7 +81,7 @@ const SiteNav: React.FC<any> = ({ Schema }) => {
               Experience
             </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link
               activeClass="active"
               to="skills"
@@ -94,7 +94,7 @@ const SiteNav: React.FC<any> = ({ Schema }) => {
             >
               Skills
             </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link
               activeClass="active"

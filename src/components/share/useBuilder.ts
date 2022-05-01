@@ -5,7 +5,7 @@ import { ISchema, SchemaTypes } from "../schemas/interfaces";
 export function useBuilder(schema?: ISchema) {
   var getSchama = (schema: ISchema, parentName?: any, init: any = {}) => {
     const prefix = !!parentName ? `${parentName}_${schema.name}` : schema.name;
-    schema.items.forEach((item: any) => {
+    schema?.items?.forEach((item: any) => {
       if (item.type == SchemaTypes.OBJECT) {
         getSchama(item, prefix, init);
       } else {
