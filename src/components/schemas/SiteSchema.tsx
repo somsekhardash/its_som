@@ -58,10 +58,11 @@ export function SiteAPI() {
   const [SiteDefinition, setDefinition] = useState(null);
 
   const getSite = () => {
-    GetSite(`${SITE_URL}/latest`, {
+    GetSite(`${SITE_URL}/latest?meta=false`, {
       method: "GET",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
       },
     });
   };
@@ -71,6 +72,7 @@ export function SiteAPI() {
       method: "PUT",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dataInject.schemaToObject(JSON.parse(data))),

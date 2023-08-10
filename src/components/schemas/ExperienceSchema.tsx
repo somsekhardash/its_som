@@ -66,10 +66,11 @@ export function ExperienceAPI() {
   const [experienceDefinition, setDefinition] = useState(null);
 
   const getExperience = () => {
-    GetExperience(`${EXPERIENCE_URL}/latest`, {
+    GetExperience(`${EXPERIENCE_URL}/latest?meta=false`, {
       method: "GET",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
       },
     });
   };
@@ -79,6 +80,7 @@ export function ExperienceAPI() {
       method: "PUT",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dataInject.schemaToObject(JSON.parse(data))),

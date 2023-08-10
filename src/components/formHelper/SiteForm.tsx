@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 // import siteDefinition from "../schemas/siteSchema";
-import "./app.scss";
+import "./app.css";
 
 import {
   Button,

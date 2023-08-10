@@ -106,10 +106,11 @@ export function AboutAPI() {
   const [definition, setDefinition] = useState(null);
 
   const getAbout = () => {
-    GetAbout(`${ABOUT_URL}/latest`, {
+    GetAbout(`${ABOUT_URL}/latest?meta=false`, {
       method: "GET",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
       },
     });
   };
@@ -119,6 +120,7 @@ export function AboutAPI() {
       method: "PUT",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dataInject.schemaToObject(JSON.parse(data))),

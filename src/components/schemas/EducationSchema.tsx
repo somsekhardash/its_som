@@ -66,10 +66,11 @@ export function EducationAPI() {
   const [educationDefinition, setDefinition] = useState(null);
 
   const getEducation = () => {
-    GetEducation(`${EDUCATION_URL}/latest`, {
+    GetEducation(`${EDUCATION_URL}/latest?meta=false`, {
       method: "GET",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
       },
     });
   };
@@ -79,6 +80,7 @@ export function EducationAPI() {
       method: "PUT",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(dataInject.schemaToObject(JSON.parse(data))),

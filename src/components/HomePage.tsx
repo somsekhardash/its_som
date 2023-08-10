@@ -30,7 +30,7 @@ function HomePage() {
     getExperience();
     getEducation();
     getSkills();
-    getContact();
+    // getContact();
     getSite();
     return () => {
       document.querySelector("body").classList.remove("margin-left-parent");

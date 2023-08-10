@@ -57,10 +57,11 @@ export function SkillsAPI() {
   );
 
   const getSkills = () => {
-    GetSkills(`${SKILLS_URL}/latest`, {
+    GetSkills(`${SKILLS_URL}/latest?meta=false`, {
       method: "GET",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY
       },
     });
   };
@@ -70,6 +71,7 @@ export function SkillsAPI() {
       method: "PUT",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
         "Content-Type": "application/json",
       },
       body: data,

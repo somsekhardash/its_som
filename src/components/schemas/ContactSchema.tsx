@@ -15,10 +15,11 @@ export function ContactAPI() {
   const [contactDefinition, setDefinition] = useState({} as any);
 
   const getContact = () => {
-    GetContact(`${CONTACT_URL}/latest`, {
+    GetContact(`${CONTACT_URL}/latest?meta=false`, {
       method: "GET",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
       },
     });
   };
@@ -30,6 +31,7 @@ export function ContactAPI() {
       method: "PUT",
       headers: {
         "secret-key": SECRET_KEY,
+        "X-Master-Key": SECRET_KEY,
         "Content-Type": "application/json",
       },
       body: direct ? JSON.stringify(data) : JSON.stringify(contactDefinition),
