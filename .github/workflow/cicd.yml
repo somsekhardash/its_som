@@ -16,6 +16,18 @@ jobs:
         run: docker build -t  dashsomsekhar/pwsite . 
       - name: Publish the image into docker hub
         run: docker publish dashsomsekhar/pwsite:latest
+  
+  deploy:
+    needs: build
+    runs-on: pwsite-runner
+    steps:
+      - name: Pull the image from docker hub
+        run: docker pull dashsomsekhar/pwsite:latest
+      - name: Delete the old container
+        run: docker rm -f theContainer
+      - name: Run the docker container
+        run: docker run -p 5000:5000 --name theContainer dashsomsekhar/pwsite:latest
+
 
 
       
