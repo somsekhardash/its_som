@@ -15,7 +15,7 @@ jobs:
       - name: Build Docker Image
         run: docker build -t  dashsomsekhar/pwsite . 
       - name: Publish the image into docker hub
-        run: docker publish dashsomsekhar/pwsite:latest
+        run: docker push dashsomsekhar/pwsite:latest
   
   deploy:
     needs: build
