@@ -24,7 +24,7 @@ jobs:
       - name: Pull the image from docker hub
         run: docker pull dashsomsekhar/pwsite:latest
       - name: Delete the old container
-        run: docker system prune
+        run: docker rm -f theContainer
       - name: Run the docker container
         run: docker run --init -p 5000:5000 -d --name theContainer dashsomsekhar/pwsite:latest
 
