@@ -19,7 +19,7 @@ jobs:
   
   deploy:
     needs: build
-    runs-on: pwsite-runner
+    runs-on: self-hosted
     steps:
       - name: Pull the image from docker hub
         run: docker pull dashsomsekhar/pwsite:latest
