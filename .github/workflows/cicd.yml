@@ -26,7 +26,7 @@ jobs:
       - name: Delete the old container
         run: docker rm -f theContainer
       - name: Run the docker container
-        run: docker run -p 5000:5000 --name theContainer dashsomsekhar/pwsite:latest
+        run: docker run -p 5000:5000 -d --name theContainer dashsomsekhar/pwsite:latest
 
 
 
