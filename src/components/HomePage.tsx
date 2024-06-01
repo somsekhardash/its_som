@@ -7,13 +7,13 @@ import SiteEducation from "./siteHelper/SiteEducation";
 import SiteSkill from "./siteHelper/SiteSkills";
 import SiteMap from "./siteHelper/SiteMap";
 import SiteContact from "./siteHelper/SiteContact";
-import { SkillsAPI } from "./schemas/skillsSchema";
+import { SkillsAPI } from "./schemas/SkillsSchema";
 import { AboutAPI } from "./schemas/HeaderSchema";
 import { ExperienceAPI } from "./schemas/ExperienceSchema";
 import { EducationAPI } from "./schemas/EducationSchema";
 import SiteSkills from "./siteHelper/SiteSkills";
 import { ContactAPI } from "./schemas/ContactSchema";
-import { SiteAPI } from "./schemas/siteSchema";
+import { SiteAPI } from "./schemas/SiteSchema";
 
 function HomePage() {
   const { definition, getAbout } = AboutAPI();
