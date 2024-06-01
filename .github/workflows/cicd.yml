@@ -46,7 +46,7 @@ jobs:
         with:
           node-version: '12'
       - name: Install dependencies
-        run: npm uninstall webpack
+        run: npm install --save-dev webpack
       - name: Install dependencies
         run: npm install
       - name: Build app
