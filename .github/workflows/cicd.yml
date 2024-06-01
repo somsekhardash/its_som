@@ -45,20 +45,23 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12'
+      - name: create .env
+        run: |
+          touch .env
+          echo ABOUT_URL="https://api.jsonbin.io/v3/b/64d3e2449d312622a38ea132" >> .env
+          echo EDUCATION_URL="https://api.jsonbin.io/v3/b/60af4ee1a5cd4a5576a85db8" >> .env
+          echo EXPERIENCE_URL="https://api.jsonbin.io/v3/b/60af4f00d0f4985540525fd3" >> .env
+          echo SKILLS_URL="https://api.jsonbin.io/v3/b/60af4f23d0f4985540525fea" >> .env
+          echo SITE_URL="https://api.jsonbin.io/v3/b/60af4f41a5cd4a5576a85dfd" >> .env
+          echo CONTACT_URL="https://api.jsonbin.io/v3/b/60af4f65a5cd4a5576a85e10" >> .env
+          echo SECRET_KEY="$2b$10$fBRiC60HbH5FFQPVhl5gQOLho8OWj4TMCL1vC.pJxmnWnbM35IBai" >> .env
+          cat .env
       - name: Install dependencies
         run: npm install --save-dev webpack
       - name: Install dependencies
         run: npm install
       - name: Build app
         run: npm run build
-        env:
-          ABOUT_URL: "https://api.jsonbin.io/v3/b/64d3e2449d312622a38ea132"
-          EDUCATION_URL: "https://api.jsonbin.io/v3/b/60af4ee1a5cd4a5576a85db8"
-          EXPERIENCE_URL: "https://api.jsonbin.io/v3/b/60af4f00d0f4985540525fd3"
-          SKILLS_URL: "https://api.jsonbin.io/v3/b/60af4f23d0f4985540525fea"
-          SITE_URL: "https://api.jsonbin.io/v3/b/60af4f41a5cd4a5576a85dfd"
-          CONTACT_URL: "https://api.jsonbin.io/v3/b/60af4f65a5cd4a5576a85e10"
-          SECRET_KEY: "$2b$10$fBRiC60HbH5FFQPVhl5gQOLho8OWj4TMCL1vC.pJxmnWnbM35IBai"
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
