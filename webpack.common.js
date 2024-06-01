@@ -59,6 +59,6 @@ module.exports = {
       clientsClaim: true,
       skipWaiting: true,
     }),
-    new Dotenv({ systemvars: true }),
+    new Dotenv(),
   ],
 };
