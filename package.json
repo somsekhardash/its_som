@@ -4,10 +4,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  // "engines": {
-  //   "npm": "1.1.12",
-  //   "node": "v14.17.3"
-  // },
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "start": "webpack-dev-server --open --config webpack.dev.js --hot",
