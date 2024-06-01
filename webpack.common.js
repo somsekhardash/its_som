@@ -60,5 +60,18 @@ module.exports = {
       skipWaiting: true,
     }),
     new Dotenv(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        ABOUT_URL: JSON.stringify(process.env.ABOUT_URL),
+        EDUCATION_URL: JSON.stringify(process.env.EDUCATION_URL),
+        EXPERIENCE_URL: JSON.stringify(process.env.EXPERIENCE_URL),
+        SKILLS_URL: JSON.stringify(process.env.SKILLS_URL),
+        SITE_URL: JSON.stringify(process.env.SITE_URL),
+        CONTACT_URL: JSON.stringify(process.env.CONTACT_URL),
+        SECRET_KEY: JSON.stringify(process.env.SECRET_KEY),
+        USER_NAME: JSON.stringify(process.env.USER_NAME),
+        PASS_WORD: JSON.stringify(process.env.PASS_WORD),
+      },
+    }),
   ],
 };
