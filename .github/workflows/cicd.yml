@@ -49,9 +49,9 @@ jobs:
         run: npm install
       - name: Build app
         run: npm run build
-        with:
+        env:
           ABOUT_URL: "https://api.jsonbin.io/v3/b/64d3e2449d312622a38ea132"
-          EDUCATION_URLt: "https://api.jsonbin.io/v3/b/60af4ee1a5cd4a5576a85db8"
+          EDUCATION_URL: "https://api.jsonbin.io/v3/b/60af4ee1a5cd4a5576a85db8"
           EXPERIENCE_URL: "https://api.jsonbin.io/v3/b/60af4f00d0f4985540525fd3"
           SKILLS_URL: "https://api.jsonbin.io/v3/b/60af4f23d0f4985540525fea"
           SITE_URL: "https://api.jsonbin.io/v3/b/60af4f41a5cd4a5576a85dfd"
