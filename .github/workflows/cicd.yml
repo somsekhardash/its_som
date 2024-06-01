@@ -57,9 +57,7 @@ jobs:
           echo SECRET_KEY="$2b$10$fBRiC60HbH5FFQPVhl5gQOLho8OWj4TMCL1vC.pJxmnWnbM35IBai" >> .env
           cat .env
       - name: Install dependencies
-        run: npx tsc --init
-      - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build app
         run: npm run build
       - name: Configure AWS Credentials
