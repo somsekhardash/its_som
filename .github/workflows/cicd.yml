@@ -39,15 +39,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Build app
+        run: npm run build
+        with:
+          ABOUT_URL: "https://api.jsonbin.io/v3/b/64d3e2449d312622a38ea132"
+          EDUCATION_URLt: "https://api.jsonbin.io/v3/b/60af4ee1a5cd4a5576a85db8"
+          EXPERIENCE_URL: "https://api.jsonbin.io/v3/b/60af4f00d0f4985540525fd3"
+          SKILLS_URL: "https://api.jsonbin.io/v3/b/60af4f23d0f4985540525fea"
+          SITE_URL: "https://api.jsonbin.io/v3/b/60af4f41a5cd4a5576a85dfd"
+          CONTACT_URL: "https://api.jsonbin.io/v3/b/60af4f65a5cd4a5576a85e10"
+          SECRET_KEY: "$2b$10$fBRiC60HbH5FFQPVhl5gQOLho8OWj4TMCL1vC.pJxmnWnbM35IBai"
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-      - name: Build React App
-        run: npm install && npm run build
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./dist/ s3://${{ secrets.AWS_S3_BUCKET_NAME }} --delete
 
