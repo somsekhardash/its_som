@@ -1,4 +1,35 @@
-name: CICD
+# name: CICD
+# on:
+#   push:
+#     branches:
+#       - master
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout the source code
+#         uses: actions/checkout@v3
+#       - name: Login to docker hub
+#         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} 
+#       - name: Build Docker Image
+#         run: docker build -t  dashsomsekhar/pwsite . 
+#       - name: Publish the image into docker hub
+#         run: docker push dashsomsekhar/pwsite:latest
+  
+#   deploy:
+#     needs: build
+#     runs-on: self-hosted
+#     steps:
+#       - name: Pull the image from docker hub
+#         run: docker pull dashsomsekhar/pwsite:latest
+#       - name: Delete the old container
+#         run: docker rm -f theContainer
+#       - name: Run the docker container
+#         run: docker run --init -p 5000:5000 -d --name theContainer dashsomsekhar/pwsite:latest
+
+
+
 on:
   push:
     branches:
@@ -8,25 +39,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the source code
-        uses: actions/checkout@v3
-      - name: Login to docker hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} 
-      - name: Build Docker Image
-        run: docker build -t  dashsomsekhar/pwsite . 
-      - name: Publish the image into docker hub
-        run: docker push dashsomsekhar/pwsite:latest
-  
-  deploy:
-    needs: build
-    runs-on: self-hosted
-    steps:
-      - name: Pull the image from docker hub
-        run: docker pull dashsomsekhar/pwsite:latest
-      - name: Delete the old container
-        run: docker rm -f theContainer
-      - name: Run the docker container
-        run: docker run --init -p 5000:5000 -d --name theContainer dashsomsekhar/pwsite:latest
+      - uses: actions/checkout@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Build React App
+        run: npm install && npm run build
+      - name: Deploy app build to S3 bucket
+        run: aws s3 sync ./dist/ s3://${{ AWS_S3_BUCKET_NAME }} --delete
 
 
 
