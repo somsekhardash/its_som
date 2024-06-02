@@ -56,7 +56,7 @@ jobs:
           echo SKILLS_URL="https://api.jsonbin.io/v3/b/60af4f23d0f4985540525fea" >> .env
           echo SITE_URL="https://api.jsonbin.io/v3/b/60af4f41a5cd4a5576a85dfd" >> .env
           echo CONTACT_URL="https://api.jsonbin.io/v3/b/60af4f65a5cd4a5576a85e10" >> .env
-          echo SECRET_KEY='$2b$10$fBRiC60HbH5FFQPVhl5gQOLho8OWj4TMCL1vC' >> .env
+          echo SECRET_KEY='$2b$10$fBRiC60HbH5FFQPVhl5gQOLho8OWj4TMCL1vC.pJxmnWnbM35IBai' >> .env
           cat .env
       - name: remove node_modules
         run: rm -rf node_modules/
