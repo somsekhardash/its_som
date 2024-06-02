@@ -45,6 +45,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - name: show sec key
+        run: echo '${{ secrets.SECRET_KEY }}'
       - name: create .env
         run: |
           touch .env
