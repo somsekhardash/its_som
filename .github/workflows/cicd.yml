@@ -44,7 +44,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '12'
+          node-version: '14'
       - name: create .env
         run: |
           touch .env
@@ -56,8 +56,9 @@ jobs:
           echo CONTACT_URL="https://api.jsonbin.io/v3/b/60af4f65a5cd4a5576a85e10" >> .env
           echo SECRET_KEY="$2b$10$fBRiC60HbH5FFQPVhl5gQOLho8OWj4TMCL1vC.pJxmnWnbM35IBai" >> .env
           cat .env
-      - name: Install dependencies
+      - name: remove node_modules
         run: rm -rf node_modules/
+      - name: Install dependencies
         run: npm install --production
       - name: Build app
         run: npm run build
