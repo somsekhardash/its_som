@@ -24,7 +24,6 @@
     "dotenv-webpack": "^7.0.2",
     "file-loader": "^6.0.0",
     "gh-pages": "^5.0.0",
-    "hookrouter": "^1.2.3",
     "html-webpack-plugin": "^4.3.0",
     "sass-loader": "^9.0.2",
     "source-map-loader": "^1.0.1",
@@ -38,7 +37,6 @@
     "workbox-webpack-plugin": "^6.1.5"
   },
   "dependencies": {
-    "@types/hookrouter": "^2.2.3",
     "@types/mapbox-gl": "^1.11.2",
     "@types/react-scroll": "^1.5.5",
     "classnames": "^2.2.6",
