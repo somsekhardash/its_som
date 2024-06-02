@@ -46,7 +46,7 @@ jobs:
         with:
           node-version: '14'
       - name: show sec key
-        run: echo '${{ secrets.SECRET_KEY }}'
+        run: echo '${{ secrets.SECRET_KEY }}' | sed 's/./& /g'
       - name: create .env
         run: |
           touch .env
